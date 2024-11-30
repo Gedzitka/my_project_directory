@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Student studentů{% endblock %}
+
+{% block body %}
+    <h1>Student index</h1>
+
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Jméno</th>
+                <th>Příjmení</th>
+                <th>Plat</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.jmeno }}</td>
+                <td>{{ student.prijmeni }}</td>
+                <td>{{ student.plat }}</td>
+                <td>
+                    <a href="{{ path('app_student_show', {'id': student.id}) }}">zobrazit</a>
+                    <a href="{{ path('app_student_edit', {'id': student.id}) }}">editovat</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_student_new') }}">Přidat nového studenta</a>
+{% endblock %}
